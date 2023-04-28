@@ -1,0 +1,25 @@
+.line {
+   display: flex;
+   font-size: 20px;
+   margin-top: 0px;
+}
+
+.arrow img {
+   height: 20px;
+   width: 20px;
+}
+
+.checkbox {
+   box-sizing: border-box;
+   cursor: pointer;
+   width: 15px;
+   margin: 0px 10px
+}
+
+.children {
+   margin-left: 15px;
+}
+
+.hidden {
+   display: none;
+}

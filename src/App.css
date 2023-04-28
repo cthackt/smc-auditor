@@ -1,0 +1,44 @@
+.App {
+   display: flex;
+   margin: 3vh 3vw;
+   height: 94vh;
+   width: 94vw;
+}
+
+.sidebar {
+   box-sizing: border-box;
+   height: 100%;
+   width: 25%;
+   padding: 20px;
+   background: linear-gradient(0deg, #646464 0%, #949494 100%);
+   border-top-left-radius: 10px;
+   border-bottom-left-radius: 10px;
+}
+
+.search-input {
+   border: none;
+   border-radius: 5px;
+}
+
+.sidebar button {
+   width: 100%;
+   filter: drop-shadow(0 3px 2px rgb(94, 94, 94));
+}
+
+.SampleYearButtonContainer {
+   padding-top: 20px;
+}
+
+.display {
+   box-sizing: border-box;
+   height: 100%;
+   width: 75%;
+   padding: 20px;
+   background: linear-gradient(0deg, #c2c2c2 0%, #fefefe 100%);
+   border-top-right-radius: 10px;
+   border-bottom-right-radius: 10px;
+}
+
+.display-message {
+   color: rgb(147, 147, 147)
+}
