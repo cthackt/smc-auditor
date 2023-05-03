@@ -16,6 +16,9 @@ export const stationsSlice = createSlice({
          .addCase(getData.fulfilled, (state, action) => {
             state.data = action.payload
          })
+         // .addCase(getData.rejected, (state, action) => {
+         //    state.data = action.payload
+         // })
    }
 })
 

@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
    "t1 parent" : true,
    "t2 child" : false,
-   "t3 grandchild" : false
+   "t3 grandchild" : false,
+   "All results" : true
 }
 
 export const tablesSlice = createSlice({
