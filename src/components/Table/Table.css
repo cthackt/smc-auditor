@@ -12,11 +12,11 @@
    filter: drop-shadow(0 3px 2px rgb(94, 94, 94));
    margin: 10px;
    width: fit-content;
+   overflow: auto;
 }
 
 td {
    border: solid 1px lightgray;
-   width: 100px;
 }
 
 td img {
@@ -27,14 +27,13 @@ td img {
 th {
    border: solid 1px #949494;
    background-color: #949494 !important;
-   width: 100px;
+   padding-top: none !important;
 }
 
 td:nth-child(1),
 th:nth-child(1) {
    border: solid 1px #949494;
    background-color: #949494;
-   width: 150px;
    text-align: left;
 }
 

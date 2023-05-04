@@ -20,6 +20,7 @@ function App() {
    const [inputValue, setInputValue] = useState('105PS0540')
    const [sampleYears, setSampleYears] = useState("")
    const [tableIsLoaded, setTableIsLoaded] = useState(false)
+   const [sampleDates, setSampleDates] = useState([])
 
    const stationResults = useSelector(state => state.station.data)
    const showModal = useSelector(state => state.modal.active)
@@ -66,20 +67,19 @@ function App() {
          Object.keys(stationResults[datatype]).forEach(el => {
             if (stationResults[datatype][el]["sampledate"]) {
                let sampleDate = new Date(stationResults[datatype][el]["sampledate"]).toDateString()
-               // let sampleDateString = `${sampleDate.getFullYear()}/${sampleDate.getMonth()}/${sampleDate.getDate()}`
                if (!sampleDatesArray.includes(sampleDate)) {
                   sampleDatesArray.push(sampleDate)
                }
             } else if (stationResults[datatype][el]["visitdate"]) {
-               // let sampleDate = new Date(stationResults[datatype][el]["visitdate"]);
-               // let sampleDateString = `${sampleDate.getFullYear()}/${sampleDate.getMonth() + 1}/${sampleDate.getDate()}`
-               // if (!sampleDatesArray.includes(sampleDateString)) {
-               //    sampleDatesArray.push(sampleDateString)
-               // }
+               let sampleDate = new Date(stationResults[datatype][el]["visitdate"]).toDateString();
+               if (!sampleDatesArray.includes(sampleDate)) {
+                  sampleDatesArray.push(sampleDate)
+               }
             }
          })
       });
       sampleDatesArray.sort((date1, date2) => new Date(date1).setHours(0, 0, 0, 0) - new Date(date2).setHours(0, 0, 0, 0));
+      setSampleDates(sampleDatesArray)
       console.log(sampleDatesArray);
    }
 
@@ -108,7 +108,7 @@ function App() {
                   
                   <div className="row">
                      {tableIsLoaded ?
-                        <Table title={"All results"} sampleDates={[]}/>
+                        <Table title={"All results"} sampleDates={sampleDates} headers={Object.keys(stationResults)}/>
                         // tableTitles.map(tableTitle => {
                         //    const allSampleDates = Object.keys(stationResults[tableTitle])
                         //    let selectedSampleDates = []

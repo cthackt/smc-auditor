@@ -45,16 +45,16 @@ export default function Table(props) {
                <thead>
                   <tr>
                      <th scope="col">Sample Date</th>
-                     {/* {headers.map(header => {
+                     {headers.map(header => {
                         return <th scope="col">{header}</th>
-                     })} */}
+                     })}
                   </tr>
                </thead>
                <tbody>
                   {sampleDates.map((sampleDate) => {
                      return (
                         <tr>
-                           <td>{sampleDate}</td>
+                           <td>{sampleDate.substring(3)}</td>
                            {/* {headers.map(header => {
                               return <td>{ insertStatusIcon( header, sampleDate ) }</td>
                            })} */}
