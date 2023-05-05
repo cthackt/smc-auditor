@@ -25,18 +25,6 @@ export default function Table(props) {
       console.log(header, sampleDate)
    }
 
-   const insertStatusIcon = (header, sampleDate) => {
-      if (stationResults[title][sampleDate][header] === true) {
-         return (
-            <button class="btn btn-success" onClick={ () => handleStatusButtonClick(header, sampleDate) }>✓</button>
-         )
-      } else {
-         return(
-            <button class='btn btn-danger' onClick={ () => handleStatusButtonClick(header, sampleDate) }>error</button>
-         )
-      }
-   }
-
    if (displayTheTable) {
       return (
          <div className='tableContainer'>
@@ -54,10 +42,18 @@ export default function Table(props) {
                   {sampleDates.map((sampleDate) => {
                      return (
                         <tr>
-                           <td>{sampleDate.substring(3)}</td>
-                           {/* {headers.map(header => {
-                              return <td>{ insertStatusIcon( header, sampleDate ) }</td>
-                           })} */}
+                           <td>{/*new Date(sampleDate).toDateString().substring(3)*/ sampleDate}</td>
+                           {headers.map(header => {
+                              if (stationResults[header][0]) {
+                                 if (stationResults[header].includes(sampleDate)) {
+                                    return <td><button class="btn btn-success" onClick={ () => handleStatusButtonClick(header, sampleDate) }>✓</button></td>
+                                 } else {
+                                    return <td><button class='btn btn-danger' onClick={ () => handleStatusButtonClick(header, sampleDate) }>error</button></td>
+                                 }
+                              } else {
+                                 return <td><button class='btn btn-danger' onClick={ () => handleStatusButtonClick(header, sampleDate) }>error</button></td>
+                              }
+                           })}
                         </tr>
                      )
                   })}

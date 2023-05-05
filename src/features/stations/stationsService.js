@@ -20,3 +20,22 @@ export const getData = createAsyncThunk("stations/getData", async (stationID) =>
 
    // return demoData1;
 })
+
+export const getViewData = createAsyncThunk("stations/getViewData", async (stationID) => {
+   const payloadObj = {'station': stationID}
+   const payload = JSON.stringify(payloadObj)
+
+   const response = await fetch(`https://nexus.sccwrp.org/smc-audit/searchView`, {
+         method: 'POST',
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: payload
+      }
+   )
+   const result = await response.json()
+   console.log(result);
+   return result.res
+
+   // return demoData1;
+})

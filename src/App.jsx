@@ -26,22 +26,24 @@ function App() {
    const showModal = useSelector(state => state.modal.active)
    const selectedSampleYear = useSelector(state => state.sampleYear.sampleYear)
 
-   // const createSampleYearButtons = () => {
-   //    const allSampleDates = [];
-   //    const tables = Object.keys(stationResults)
-   //    tables.forEach(table => {
-   //       const sampleDates = Object.keys(stationResults[table])
-   //       sampleDates.forEach(sampleDate => {
-   //          const sampleYear = parseInt(sampleDate.substring(0, 4))
-   //          if (!allSampleDates.includes(sampleYear)) {
-   //             allSampleDates.push(sampleYear)
-   //          }
-   //       })
-   //    })
-   //    allSampleDates.sort(function(a, b){return b-a})
-   //    console.log(allSampleDates);
-   //    setSampleYears(allSampleDates)
-   // }
+   const createSampleYearButtons = () => {
+      const allSampleDates = [];
+      const datatypes = Object.keys(stationResults)
+      datatypes.forEach(datatype => {
+         const sampleDates = stationResults[datatype]
+         if (sampleDates[0]) {
+            sampleDates.forEach(sampleDate => {
+               const sampleYear = sampleDate.substring(11, 16)
+               if (!allSampleDates.includes(sampleYear)) {
+                  allSampleDates.push(sampleYear)
+               }
+            })
+         }
+      })
+      allSampleDates.sort(function(a, b){return b-a})
+      console.log(allSampleDates);
+      setSampleYears(allSampleDates)
+   }
 
    const handleChange = (e) => {
       setInputValue(e.target.value)
@@ -53,7 +55,7 @@ function App() {
 
    useEffect(() => {
       if (stationResults !== "") {
-         // createSampleYearButtons()
+         createSampleYearButtons()
          getSampleDates()
          setTableTitles(Object.keys(stationResults))
          setTableIsLoaded(true)
@@ -64,14 +66,9 @@ function App() {
 
    const getSampleDates = () => {
       Object.keys(stationResults).forEach(datatype => {
-         Object.keys(stationResults[datatype]).forEach(el => {
-            if (stationResults[datatype][el]["sampledate"]) {
-               let sampleDate = new Date(stationResults[datatype][el]["sampledate"]).toDateString()
-               if (!sampleDatesArray.includes(sampleDate)) {
-                  sampleDatesArray.push(sampleDate)
-               }
-            } else if (stationResults[datatype][el]["visitdate"]) {
-               let sampleDate = new Date(stationResults[datatype][el]["visitdate"]).toDateString();
+         Object.keys(stationResults[datatype]).forEach(sampledate => {
+            if (stationResults[datatype][sampledate]) {
+               const sampleDate = stationResults[datatype][sampledate]
                if (!sampleDatesArray.includes(sampleDate)) {
                   sampleDatesArray.push(sampleDate)
                }

@@ -1,8 +1,8 @@
 .table {
    background: white;
    text-align: center;
-   width: fit-content;
    color: white;
+   table-layout: auto;
 }
 
 .tableContainer {
@@ -17,17 +17,15 @@
 
 td {
    border: solid 1px lightgray;
-}
-
-td img {
-   height: 30px;
-   width: 30px
+   color: black;
+   min-width: 100px;
+   white-space: nowrap;
 }
 
 th {
    border: solid 1px #949494;
    background-color: #949494 !important;
-   padding-top: none !important;
+   white-space: nowrap;
 }
 
 td:nth-child(1),
@@ -35,6 +33,7 @@ th:nth-child(1) {
    border: solid 1px #949494;
    background-color: #949494;
    text-align: left;
+   color: white
 }
 
 .tableContainer h4 {
@@ -45,7 +44,7 @@ th:nth-child(1) {
 .table .btn {
    padding: 0px;
    box-shadow: none !important;
-   width: 90%;
+   width: 70px
 }
 .table .btn-danger {
    font-family: 'Courier New', Courier, monospace;
