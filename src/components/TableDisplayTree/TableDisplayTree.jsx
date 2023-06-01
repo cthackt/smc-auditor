@@ -4,22 +4,6 @@ import TableDisplayTreeLine from '../TableDisplayTreeLine/TableDisplayTreeLine';
 export default function TableDisplayTree() {
   return (
     <div class="TableDisplayTree">
-      <TableDisplayTreeLine tableTitle={"t1 parent"}>
-         <TableDisplayTreeLine tableTitle={"t2 child"}>
-            <TableDisplayTreeLine tableTitle={"t3 grandchild"}>
-               <li>d1</li>
-               <li>d2</li>
-               <li>d3</li>
-               <li>d4</li>
-               <li>d5</li>
-               <li>d6</li>
-               <li>d7</li>
-               <li>d8</li>
-               <li>d9</li>
-               <li>d10</li>
-            </TableDisplayTreeLine>
-         </TableDisplayTreeLine>
-      </TableDisplayTreeLine>
       <TableDisplayTreeLine tableTitle={"SQI"}>
          <TableDisplayTreeLine tableTitle={"CSCI"}>
             <li>BMI Taxonomy</li>
@@ -36,7 +20,26 @@ export default function TableDisplayTree() {
             </TableDisplayTreeLine>
          </TableDisplayTreeLine>
          <TableDisplayTreeLine tableTitle={"Habitat"}>
-            <TableDisplayTreeLine tableTitle={"PHAB"}></TableDisplayTreeLine>
+            <TableDisplayTreeLine tableTitle={"PHAB"}>
+               <li>IPI</li>
+               <li>ev_flowhab</li>
+               <li>ev_flowhab_score</li>
+               <li>h_aghab</li>
+               <li>h_aghab_pred</li>
+               <li>h_aghab_score</li>
+               <li>h subnat</li>
+               <li>h_subnat_score</li>
+               <li>pct_safn</li>
+               <li>pct_safn_pred</li>
+               <li>pct_safn_score</li>
+               <li>pct_rc</li>
+               <li>xcmg</li>
+               <li>xcmg_pred</li>
+               <li>xcmg_score</li>
+               <li>oct_pool</li>
+               <li>xc</li>
+               <li>xfc_alg</li>
+            </TableDisplayTreeLine>
             <TableDisplayTreeLine tableTitle={"CRAM"}>
                <li>indexscore</li>
                <li>bioticsctructure</li>
@@ -86,9 +89,15 @@ export default function TableDisplayTree() {
             <li>PCT_SAFN</li>
             <li>Ev_FlowHab</li>
          </TableDisplayTreeLine>
+         <TableDisplayTreeLine tableTitle={"PHAB Metrics"}>
+            <li>H_SubNat</li>
+            <li>H_AqHab</li>
+            <li>PCT_SAFN</li>
+            <li>Ev_FlowHab</li>
+         </TableDisplayTreeLine>
       </TableDisplayTreeLine>
-      <TableDisplayTreeLine tableTitle={"Analysis Tables"}></TableDisplayTreeLine>
-      <TableDisplayTreeLine tableTitle={"Raw Data Tables"}></TableDisplayTreeLine>
+      {/* <TableDisplayTreeLine tableTitle={"Analysis Tables"}></TableDisplayTreeLine>
+      <TableDisplayTreeLine tableTitle={"Raw Data"}></TableDisplayTreeLine> */}
     </div>
   )
 }

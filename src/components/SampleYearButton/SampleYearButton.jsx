@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './SampleYearButton.css'
-import { setSampleYear } from '../../features/sampleYear/sampleYearSlice'
+import { setSampleYear, reset } from '../../features/sampleYear/sampleYearSlice'
 import { useDispatch } from 'react-redux'
 
 export default function SampleYearButton(props) {
@@ -10,12 +10,17 @@ export default function SampleYearButton(props) {
    const year = props.year
 
    const handleSampleYearClick = (value) => {
-      dispatch(setSampleYear(value))
+      if (value !== "View All") {
+         value = parseInt(value)
+         dispatch(setSampleYear(value))
+      } else {
+         dispatch(reset())
+      }
    }
 
    return (
       <div className="col-md-3">
-         <button className="btn btn-light button" onClick={(e) => handleSampleYearClick(e.target.value)} value={parseInt(year)}>{year}</button>
+         <button className="btn btn-light button" onClick={(e) => handleSampleYearClick(e.target.value)} value={year}>{year}</button>
       </div>
    )
 }
