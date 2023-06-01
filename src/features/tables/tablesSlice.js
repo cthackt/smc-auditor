@@ -1,10 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-   "t1 parent" : true,
-   "t2 child" : false,
-   "t3 grandchild" : false,
-   "All results" : true
+   "TEST": false,
+   "Analysis Tables" : false,
+   "Raw Data" : false,
+   "SQI" : true,
+   "CSCI" : false,
+   "RSCA" : true,
+   "ASCI-D" : false,
+   "CRAM" : false,
+   "Chemistry" : false,
+   "Eutrophication" : false,
+   "Conductivity" : false,
+   "Habitat" : false,
+   "Temperature" : false,
+   "PHAB" : true,
+   "PHAB Metrics" : true,
 }
 
 export const tablesSlice = createSlice({

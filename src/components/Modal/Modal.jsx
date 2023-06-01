@@ -8,10 +8,10 @@ export default function Modal(props) {
 
    const dispatch = useDispatch();
 
+   const errors = useSelector(state => state.modal.errors)
    const metadata = useSelector(state => state.modal.metadata)
-   const stationID = metadata[0]
-   const sampleDate = metadata[1]
-   const datatype = metadata[2]
+
+   const error = errors !== "" && errors !== 'no data' && errors[0] ? errors[0].errmsg : ''
 
    const handleCloseClick = () => {
       dispatch(showModal())
@@ -22,19 +22,19 @@ export default function Modal(props) {
          <div className="overlay">
             <div className="modalBody">
                <div className='closeButton' onClick={handleCloseClick}><img src={closeIcon}></img></div>
-               <div className="modalHeader">
+               {/* <div className="modalHeader">
                   <h1>{datatype}</h1>
                   <div>
                      <h6>{stationID}</h6>
                      <h6>{sampleDate}</h6>
                   </div>
-               </div>
+               </div> */}
                <div className="modalContent">
                   <div className="metaDataBox">
 
                   </div>
                   <div className="errorBox">
-                     <p>Sample error message</p>
+                     <p>{error}</p>
                   </div>
                </div>
             </div>

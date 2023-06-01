@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getData } from "./stationsService";
+import { getData, getErrorDates } from "./stationsService";
 
 const initialState = {
-   data: ''
+   data: "",
+   errorDates: "",
+   pending: false
 }
 
 export const stationsSlice = createSlice({
@@ -13,8 +15,15 @@ export const stationsSlice = createSlice({
    },
    extraReducers: (builder) => {
       builder
+         .addCase(getData.pending, (state) => {
+            state.pending = true
+         })
          .addCase(getData.fulfilled, (state, action) => {
             state.data = action.payload
+            state.pending = false
+         })
+         .addCase(getErrorDates.fulfilled, (state, action) => {
+            state.errorDates = action.payload
          })
    }
 })

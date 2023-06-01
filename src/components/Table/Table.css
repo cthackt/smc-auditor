@@ -1,8 +1,10 @@
 .table {
-   background: white;
+   background: #949494;
    text-align: center;
    color: white;
    table-layout: auto;
+   border-collapse: separate;
+
 }
 
 .tableContainer {
@@ -12,11 +14,30 @@
    filter: drop-shadow(0 3px 2px rgb(94, 94, 94));
    margin: 10px;
    width: fit-content;
+   max-height: 40vh;
+}
+
+.tableCloseButton {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   cursor: pointer;
+}
+
+.tableCloseButton img {
+   height: 25px;
+   width: auto;
+}
+
+
+.containerBody {
    overflow: auto;
+   max-height: 32vh;
 }
 
 td {
-   border: solid 1px lightgray;
+   border: solid 1px #949494;
+   background-color: white !important;
    color: black;
    min-width: 100px;
    white-space: nowrap;
@@ -26,19 +47,21 @@ th {
    border: solid 1px #949494;
    background-color: #949494 !important;
    white-space: nowrap;
+   position: sticky;
+   top: 0;
 }
 
 td:nth-child(1),
 th:nth-child(1) {
    border: solid 1px #949494;
-   background-color: #949494;
+   background-color: #949494 !important;
    text-align: left;
-   color: white
+   color: white;
 }
 
 .tableContainer h4 {
    color: rgb(224, 224, 224);
-   margin: 10px 0px 20px
+   margin: 10px 0px 20px;
 }
 
 .table .btn {
@@ -50,4 +73,3 @@ th:nth-child(1) {
    font-family: 'Courier New', Courier, monospace;
    font-weight: bold;
 }
-
