@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch, useEffect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { display } from '../../features/tables/tablesSlice';
-import styles from './TableDisplayTreeLine.css'
+import './TableDisplayTreeLine.css'
 import expandArrow from '../../assets/expand-arrow.png'
 import collapseArrow from '../../assets/collapse-arrow.png'
 
@@ -36,7 +36,7 @@ export default function TableDisplayTreeLine(props) {
    return (
       <div>
          <div className="line">
-            <div className="arrow" onClick={handleArrowClick}><img src={arrowIcon}></img></div>
+            <div className="arrow" onClick={handleArrowClick}><img src={arrowIcon} alt="expand/colapse"></img></div>
             <input type='checkbox' className='checkbox' onChange={handleCheckboxChange} checked={displayTable}></input>
             <span>{title}</span>
          </div>
