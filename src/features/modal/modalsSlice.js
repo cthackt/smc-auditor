@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getErrors, getMetaData } from "./modalsService";
+import { getErrors, getMetaData, getSampleInfo } from "./modalsService";
 
 const initialState = {
    active: false,
    errors: "",
+   sampleInfo: "",
    metadata: ""
 }
 
@@ -23,8 +24,11 @@ export const modalsSlice = createSlice({
          .addCase(getMetaData.fulfilled, (state, action) => {
             state.metadata = action.payload
          })
+         .addCase(getSampleInfo.fulfilled, (state, action) => {
+            state.sampleInfo = action.payload
+         })
    }
 })
 
-export const { showModal, setSampleData } = modalsSlice.actions;
+export const { showModal } = modalsSlice.actions;
 export default modalsSlice.reducer

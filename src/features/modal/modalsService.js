@@ -43,3 +43,14 @@ export const getMetaData = createAsyncThunk("modal/getMetaData", async (actionOb
    const result = await response.json()
    return result.res
 })
+
+export const getSampleInfo = createAsyncThunk("modal/getSampleInfo", async (actionObject) => {
+
+   const result = {
+      'station': actionObject[0],
+      'sample_date': actionObject[1],
+      'variable': actionObject[2]
+   }
+
+   return result
+})

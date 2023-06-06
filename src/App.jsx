@@ -16,7 +16,7 @@ function App() {
    const dispatch = useDispatch()
 
    const displayMessage = 'Search for a station and select a sample year to display results...'
-   const [inputValue, setInputValue] = useState('909SWCASR')
+   const [inputValue, setInputValue] = useState('SGUT502')
    const [sampleYears, setSampleYears] = useState("")
    const [tableIsLoaded, setTableIsLoaded] = useState(false)
    const [sampleDates, setSampleDates] = useState([])
@@ -37,13 +37,14 @@ function App() {
             sampleDates.forEach(sampleDate => {
                const newDateString = new Date(sampleDate).toDateString()
                const sampleYear = newDateString.substring(11, 15)
-               if (!allSampleDates.includes(sampleYear) && newDateString != "Invalid Date") {
+               if (!allSampleDates.includes(sampleYear) && newDateString !== "Invalid Date") {
                   allSampleDates.push(sampleYear)
                }
             })
          }
       })
       allSampleDates.sort(function (a, b) { return b - a })
+      console.log(allSampleDates)
       setSampleYears(allSampleDates)
    }
 
@@ -52,64 +53,42 @@ function App() {
       if (year) {
          const beginDate = new Date(year, 0, 1)
          const endDate = new Date(year, 11, 31, 23, 59)
+         console.log("begin date: ", beginDate, " end date: ", endDate)
          Object.keys(stationResults).forEach(datatype => {
-            // if (datatype === "analysis-view" || datatype === "raw-view") {
-            //    for (let sample in stationResults[datatype]) {
-            //       let newSampleDate;
-            //       if (datatype === "analysis-view") {
-            //          newSampleDate = stationResults[datatype][sample]["taxsampledate"]
-            //       } else if (datatype === "raw-view") {
-            //          newSampleDate = stationResults[datatype][sample]["sampledate"]
-            //       }
-            //       if (!sampleDatesArray.includes(newSampleDate) && newSampleDate >= beginDate && newSampleDate <= endDate) {
-            //          sampleDatesArray.push(newSampleDate)
-            //       }
-            //    }
-            // } else {
-               Object.keys(stationResults[datatype]).forEach(sampledate => {
-                  if (stationResults[datatype][sampledate]) {
-                     const sampleDateString = stationResults[datatype][sampledate]
-                     const sampleDate = new Date(stationResults[datatype][sampledate])
-                     if (!sampleDatesArray.includes(sampleDateString) && sampleDate >= beginDate && sampleDate <= endDate) {
-                        sampleDatesArray.push(sampleDateString)
-                     }
+            Object.keys(stationResults[datatype]).forEach(sampledate => {
+               if (stationResults[datatype][sampledate]) {
+                  const sampleDateString = stationResults[datatype][sampledate]
+                  const sampleDate = new Date(stationResults[datatype][sampledate])
+                  if (!sampleDatesArray.includes(sampleDateString) && sampleDate >= beginDate && sampleDate <= endDate) {
+                     sampleDatesArray.push(sampleDateString)
                   }
-               })
-            // }
+               }
+            })
+         })
+         dispatch(getErrorDates(inputValue))
+         processedErrorDates.forEach(date => {
+            if (!sampleDatesArray.includes(date) && date >= beginDate && date <= endDate) {
+               sampleDatesArray.push(date)
+            }
          })
       } else {
          Object.keys(stationResults).forEach(datatype => {
-            // if (datatype === "analysis-view" || datatype === "raw-view") {
-            //    for (let sample in stationResults[datatype]) {
-            //       let newSampleDate;
-            //       if (datatype === "analysis-view") {
-            //          newSampleDate = new Date(stationResults[datatype][sample]["taxsampledate"])
-            //       } else if (datatype === "raw-view") {
-            //          newSampleDate = new Date(stationResults[datatype][sample]["sampledate"])
-            //       }
-            //       if (!sampleDatesArray.includes(newSampleDate)) {
-            //          sampleDatesArray.push(newSampleDate)
-            //       }
-            //    }
-            // } else {
-               Object.keys(stationResults[datatype]).forEach(sampledate => {
-                  if (stationResults[datatype][sampledate]) {
-                     const sampleDate = new Date(stationResults[datatype][sampledate]).toUTCString()
-                     if (!sampleDatesArray.includes(sampleDate)) {
-                        sampleDatesArray.push(sampleDate)
-                     }
+            Object.keys(stationResults[datatype]).forEach(sampledate => {
+               if (stationResults[datatype][sampledate]) {
+                  const sampleDate = new Date(stationResults[datatype][sampledate]).toUTCString()
+                  if (!sampleDatesArray.includes(sampleDate)) {
+                     sampleDatesArray.push(sampleDate)
                   }
-               })
-               
-            // }
+               }
+            })
          })
          dispatch(getErrorDates(inputValue))
+         processedErrorDates.forEach(date => {
+            if (!sampleDatesArray.includes(date)) {
+               sampleDatesArray.push(date)
+            }
+         })
       }
-      processedErrorDates.map(date => {
-         if (!sampleDatesArray.includes(date)) {
-            sampleDatesArray.push(date)
-         }
-      })
       sampleDatesArray.sort((date1, date2) => new Date(date1) - new Date(date2));
       setSampleDates(sampleDatesArray)
    }
@@ -122,8 +101,8 @@ function App() {
             sampleIDs.push(errorDates[variable].sampleid[index])
          }
       }
-      sampleIDs.map(string => {
-         let subString = string.substring(string.indexOf("_")+1)
+      sampleIDs.forEach(string => {
+         let subString = string.substring(string.indexOf("_") + 1)
          subString = subString.substring(0, subString.indexOf("_"))
          const newErrorDate = new Date(subString).toUTCString()
          newErrorDates.push(newErrorDate)
@@ -141,24 +120,26 @@ function App() {
 
    useEffect(() => {
       if (stationResults !== "") {
+         
          createSampleYearButtons()
          getSampleDates()
          setTableIsLoaded(true)
+         
       }
-   }, [stationResults])
+   }, [stationResults]) // eslint-disable-line react-hooks/exhaustive-deps
 
    useEffect(() => {
       if (stationResults !== "") {
          getSampleDates(selectedSampleYear)
       }
-   }, [selectedSampleYear])
+   }, [selectedSampleYear]) // eslint-disable-line react-hooks/exhaustive-deps
 
    useEffect(() => {
 
-     handleGetErrorDates()
+      handleGetErrorDates()
 
-   }, [errorDates])
-   
+   }, [errorDates]) // eslint-disable-line react-hooks/exhaustive-deps
+
 
    return (
       <div>
@@ -176,8 +157,8 @@ function App() {
                      </div>
                   </div>
                   <div className="row SampleYearButtonContainer g-1">
-                     {sampleYears != "" ? <SampleYearButton year="View All" /> : ""}
-                     {sampleYears != "" ? sampleYears.map(sampleYear => { return <SampleYearButton year={sampleYear} /> }) : ""}
+                     {sampleYears !== "" ? <SampleYearButton year="View All" /> : ""}
+                     {sampleYears !== "" ? sampleYears.map(sampleYear => { return <SampleYearButton year={sampleYear} /> }) : ""}
                   </div>
                   <TableDisplayTree />
                </div>
@@ -189,8 +170,8 @@ function App() {
                         {/* <Table title={"All results"} sampleDates={sampleDates} headers={Object.keys(stationResults)}/> */}
                         <Table title={"Analysis Tables"} sampleDates={sampleDates} tableDataType="analysis" />
                         <Table title={"Raw Data"} sampleDates={sampleDates} tableDataType="raw" />
-                        <Table title={"PHAB Metrics"} sampleDates={sampleDates} tableDataType="direct" headers={["H_SubNat", "H_AqHab", "PCT_SAFN", "Ev_FlowHab"]}/>
-                        
+                        <Table title={"PHAB Metrics"} sampleDates={sampleDates} tableDataType="direct" headers={["H_SubNat", "H_AqHab", "PCT_SAFN", "Ev_FlowHab"]} />
+
 
                         <Table title={"SQI"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["csci", "asci-d", "chem"]} />
                         <Table title={"CSCI"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["bmi taxonomy", "gis metrics"]} />
@@ -203,6 +184,23 @@ function App() {
                         <Table title={"Temperature"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["temp phab", "XCMG phab", "XCDENMID"]} />
                         <Table title={"Conductivity"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["specicon phab", "chloride", "sulfate", "tds"]} />
                         <Table title={"Habitat"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["H_SubNat", "H_AqHab", "PCT_SAFN", "Ev_FlowHab"]} />
+                        <Table title={"XSlope"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={['Proportion', 'Elevation Difference', 'Length, Segment', 'Slope']} />
+                        <Table title={"XBKF_W"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={['Bankfull Height', 'Bankfull Width', 'StationWaterDepth', 'Wetted Width']} />
+                        <Table title={"IPI"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["XSLOPE", "h_aqhab", "pct_safn", "xcmg", "ev_flowhab", "xc", "PCT_POOL", "pct_rc"]} />
+                        <Table title={"W1_HALL_SWAMP"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Riparian Bridges/Abutments", "Riparian Buildings", "Riparian Landfill/Trash", "Riparian Logging", "Riparian Mining", "Riparian Orchards/Vineyards", "Riparian Park/Lawn", "Riparian Pasture/Range", "Riparian Pavement", "Riparian Pipes", "Riparian Road", "Riparian Crops", "Riparian Vegetation Management", "Riparian Wall/Dike"]} />
+                        <Table title={"ev_flowhab"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Cascade/Falls", "Glide", "Pool", "Rapid", "Riffle", "Run"]} />
+                        <Table title={"h_aqhab"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Fish Cover Boulders", "Fish Cover Filamentous Algae", "Fish Cover Live Trees/Roots", "Fish Cover Macrophytes", "Fish Cover Overhang.Veg", "Fish Cover Undercut Banks", "Fish Cover Woody Debris <0.3 m", "Fish Cover Woody Debris >0.3 m"]} />
+                        <Table title={"h_subnat"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Substrate Size Class"]} />
+                        <Table title={"pct_safn"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Substrate Size Class"]} />
+                        <Table title={"pct_rc"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Substrate Size Class"]} />
+                        <Table title={"pct_pool"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Pool"]} />
+                        <Table title={"xcmg"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Riparian GroundCover NonWoody Plants", "Riparian GroundCover Woody Shrubs", "Riparian Upper Canopy All Trees"]} />
+                        <Table title={"xc"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Riparian Upper Canopy All Trees"]} />
+                        <Table title={"fl_q_m"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Distance from Bank", "StationWaterDepth fl_q_m", "Velocity"]} />
+                        <Table title={"fl_n_m"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["StationWaterDepth fl_d_m"]} />
+                        <Table title={"fl_d_m"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={[""]} />
+                        <Table title={"fl_t_m"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={[""]} />
+
                      </div>
                      : <div className="row"><p className='display-message'>{displayMessage}</p></div>
                   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './SampleYearButton.css'
+import './SampleYearButton.css'
 import { setSampleYear, reset } from '../../features/sampleYear/sampleYearSlice'
 import { useDispatch } from 'react-redux'
 
