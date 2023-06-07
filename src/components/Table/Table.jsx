@@ -61,7 +61,15 @@ export default function Table(props) {
                                     if (stationResults[header] && Object.values(stationResults[header]).includes(sampleDate)) {
                                        return <td><button class="btn btn-success" onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>✓</button></td>
                                     } else {
-                                       if (errDates && errDates.includes(sampleDate) && Object.keys(errorData).includes(header)) {
+                                       let errorExists = false
+                                       if (errorData[header]) {
+                                          for (let key in errorData[header]['sampledate']) {
+                                             if (new Date(errorData[header]['sampledate'][key]).toUTCString() === sampleDate) {
+                                                errorExists = true;
+                                             }
+                                          }
+                                       }
+                                       if (errorExists) {
                                           return <td><button class='btn btn-danger' onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>error</button></td>
                                        } else {
                                           return <td><button class='btn btn-secondary' onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>no data</button></td>

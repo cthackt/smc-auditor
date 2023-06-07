@@ -9,7 +9,7 @@ import TableDisplayTree from './components/TableDisplayTree/TableDisplayTree';
 import SampleYearButton from './components/SampleYearButton/SampleYearButton';
 import Modal from './components/Modal/Modal';
 import Loader from './components/Loader/Loader';
-
+import metricsModules from './metricsModules';
 
 function App() {
 
@@ -94,20 +94,15 @@ function App() {
    }
 
    const handleGetErrorDates = () => {
-      const sampleIDs = []
+      const dates = []
       const newErrorDates = []
       for (let variable in errorDates) {
-         for (let index in errorDates[variable].sampleid) {
-            sampleIDs.push(errorDates[variable].sampleid[index])
+         for (let index in errorDates[variable].sampledate) {
+            dates.push(new Date(errorDates[variable].sampledate[index]).toUTCString())
          }
       }
-      sampleIDs.forEach(string => {
-         let subString = string.substring(string.indexOf("_") + 1)
-         subString = subString.substring(0, subString.indexOf("_"))
-         const newErrorDate = new Date(subString).toUTCString()
-         newErrorDates.push(newErrorDate)
-      })
-      setProcessedErrorDates(newErrorDates)
+      console.log('dates: ', dates)
+      setProcessedErrorDates(dates)
    }
 
    const handleChange = (e) => {
@@ -167,40 +162,14 @@ function App() {
                <div className="container">
                   {tableIsLoaded ?
                      <div className="row">
-                        {/* <Table title={"All results"} sampleDates={sampleDates} headers={Object.keys(stationResults)}/> */}
-                        <Table title={"Analysis Tables"} sampleDates={sampleDates} tableDataType="analysis" />
-                        <Table title={"Raw Data"} sampleDates={sampleDates} tableDataType="raw" />
-                        <Table title={"PHAB Metrics"} sampleDates={sampleDates} tableDataType="direct" headers={["H_SubNat", "H_AqHab", "PCT_SAFN", "Ev_FlowHab"]} />
-
-
-                        <Table title={"SQI"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["csci", "asci-d", "chem"]} />
-                        <Table title={"CSCI"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["bmi taxonomy", "gis metrics"]} />
-                        <Table title={"ASCI-D"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["algae taxonomy", "gis metrics"]} />
-                        <Table title={"RSCA"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["csci", "temp chemistry", "specicon chemistry"]} />
-                        <Table title={"PHAB"} station={inputValue} sampleDates={sampleDates} errDates={processedErrorDates} tableDataType="direct" headers={["ipi", "ev_flowhab", "ev_flowhab_score", "h_aqhab", "h_aqhab_pred", "h_aqhab_score", "h_subnat", "h_subnat_score", "pct_safn", "pct_safn_pred", "pct_safn_score", "pct_rc", "xcmg", "xcmg_pred", "xcmg_score"]} />
-                        <Table title={"CRAM"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["indexscore", "bioticstructure", "bufferandlandscapecontext", "hydrology", "physical structure"]} />
-                        <Table title={"Chemistry"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["total p", "total n", "specicon chemistry"]} />
-                        <Table title={"Eutrophication"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["total n", "total p", "dissolved oxygen chemistry", "benthic afdm", "benthic chl-a"]} />
-                        <Table title={"Temperature"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["temp phab", "XCMG phab", "XCDENMID"]} />
-                        <Table title={"Conductivity"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["specicon phab", "chloride", "sulfate", "tds"]} />
-                        <Table title={"Habitat"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["H_SubNat", "H_AqHab", "PCT_SAFN", "Ev_FlowHab"]} />
-                        <Table title={"XSlope"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={['Proportion', 'Elevation Difference', 'Length, Segment', 'Slope']} />
-                        <Table title={"XBKF_W"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={['Bankfull Height', 'Bankfull Width', 'StationWaterDepth', 'Wetted Width']} />
-                        <Table title={"IPI"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["XSLOPE", "h_aqhab", "pct_safn", "xcmg", "ev_flowhab", "xc", "PCT_POOL", "pct_rc"]} />
-                        <Table title={"W1_HALL_SWAMP"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Riparian Bridges/Abutments", "Riparian Buildings", "Riparian Landfill/Trash", "Riparian Logging", "Riparian Mining", "Riparian Orchards/Vineyards", "Riparian Park/Lawn", "Riparian Pasture/Range", "Riparian Pavement", "Riparian Pipes", "Riparian Road", "Riparian Crops", "Riparian Vegetation Management", "Riparian Wall/Dike"]} />
-                        <Table title={"ev_flowhab"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Cascade/Falls", "Glide", "Pool", "Rapid", "Riffle", "Run"]} />
-                        <Table title={"h_aqhab"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Fish Cover Boulders", "Fish Cover Filamentous Algae", "Fish Cover Live Trees/Roots", "Fish Cover Macrophytes", "Fish Cover Overhang.Veg", "Fish Cover Undercut Banks", "Fish Cover Woody Debris <0.3 m", "Fish Cover Woody Debris >0.3 m"]} />
-                        <Table title={"h_subnat"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Substrate Size Class"]} />
-                        <Table title={"pct_safn"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Substrate Size Class"]} />
-                        <Table title={"pct_rc"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Substrate Size Class"]} />
-                        <Table title={"pct_pool"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Pool"]} />
-                        <Table title={"xcmg"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Riparian GroundCover NonWoody Plants", "Riparian GroundCover Woody Shrubs", "Riparian Upper Canopy All Trees"]} />
-                        <Table title={"xc"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Riparian Upper Canopy All Trees"]} />
-                        <Table title={"fl_q_m"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["Distance from Bank", "StationWaterDepth fl_q_m", "Velocity"]} />
-                        <Table title={"fl_n_m"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={["StationWaterDepth fl_d_m"]} />
-                        <Table title={"fl_d_m"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={[""]} />
-                        <Table title={"fl_t_m"} station={inputValue} sampleDates={sampleDates} tableDataType="direct" headers={[""]} />
-
+                        {Object.keys(metricsModules).map(key => {
+                           const hasErrorHandling = ['SQI', 'PHAB', 'ASCI-D', '']
+                           if (hasErrorHandling.includes(key)) {
+                              return <Table title={key} station={inputValue} sampleDates={sampleDates} errDates={processedErrorDates} headers={metricsModules[key]} />
+                           } else {
+                              return <Table title={key} station={inputValue} sampleDates={sampleDates} headers={metricsModules[key]} />
+                           }
+                        })}
                      </div>
                      : <div className="row"><p className='display-message'>{displayMessage}</p></div>
                   }
