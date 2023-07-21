@@ -4,11 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showModal } from '../../features/modal/modalsSlice';
 import closeIcon from '../../assets/close.png'
 
-export default function Modal(props) {
+export default function Modal() {
 
    const dispatch = useDispatch();
-
-
 
    const errors = useSelector(state => state.modal.errors)
    const stationID = useSelector(state => state.modal.sampleInfo.station)
@@ -35,10 +33,12 @@ export default function Modal(props) {
                </div>
                <div className="modalContent">
                   <div className="metaDataBox">
-
+                     <h3>Meta data..?</h3>
+                     <h3>Something else useful..?</h3>
                   </div>
                   <div className="errorBox">
-                     <p>{error}</p>
+                     
+                     <p>{error ? error : 'errors will display here...'}</p>
                   </div>
                </div>
             </div>

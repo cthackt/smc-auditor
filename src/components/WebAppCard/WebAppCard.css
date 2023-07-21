@@ -1,0 +1,35 @@
+.card {
+   background: #949494;
+   color: white;
+   table-layout: auto;
+   border-collapse: separate;
+}
+
+.cardContainer{
+   background-color: #949494;
+   padding: 10px;
+   border-radius: 10px;
+   filter: drop-shadow(0 3px 2px rgb(94, 94, 94));
+   color: rgb(224, 224, 224);
+}
+
+.cardHeader .col-md-2 {
+   text-align: right;
+}
+
+.cardBody {
+   overflow: auto;
+   width: 100%;
+   
+}
+
+.cardBody .btn {
+   width: 100%;
+   margin-top: 15px
+}
+
+.status-circle {
+   width: 30px;
+   height: auto;
+}
+

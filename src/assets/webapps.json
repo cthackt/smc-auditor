@@ -1,0 +1,254 @@
+{
+   "tools": [
+      {
+         "name": "RSCA",
+         "services": [
+            {
+               "url": "https://rsca.sccwrp.org/sgrrmp",
+               "expected_data": null
+            },
+            {
+               "url": "https://rsca.sccwrp.org/r/loaplot/SGUT502_2010-05-27_BMI_RWB_1/temperature/spatial_co_occurrence",
+               "expected_data": null
+            },
+            {
+               "url": "https://rsca.sccwrp.org/sgrrmp_rsca/getsampleids?masterid=SGUT502&year=2010&loa=spatial_co_occurrence",
+               "expected_data": {
+                  "sampleids": [
+                     "SGUT502_2010-05-27_BMI_RWB_1"
+                  ]
+               }
+            },
+            {
+               "url": "https://rsca.sccwrp.org/sgrrmp_rsca/fetchdata/modplot/?masterid=SGUT502",
+               "expected_data": {
+                  "data": "[{\"masterid\": \"SGUT502\", \"year\": 2010.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"Cannot be Evaluated\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"Cannot be Evaluated\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"Unlikely Cause\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"stationname\": \"\", \"module\": \"temperature\", \"assessment\": \"Unlikely Cause\", \"human_module\": \"Temperature\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"Cannot be Evaluated\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"Cannot be Evaluated\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"Unlikely Cause\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"stationname\": \"\", \"module\": \"eutrophication\", \"assessment\": \"Unlikely Cause\", \"human_module\": \"Eutrophication\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"Unlikely Cause\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"Unlikely Cause\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"Unlikely Cause\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"stationname\": \"\", \"module\": \"conductivity\", \"assessment\": \"Unlikely Cause\", \"human_module\": \"Conductivity\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"Cannot be Evaluated\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"Cannot be Evaluated\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"CSCI > 0.79\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"Cannot be Evaluated\", \"human_module\": \"Habitat\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"stationname\": \"\", \"module\": \"habitat\", \"assessment\": \"Cannot be Evaluated\", \"human_module\": \"Habitat\"}]"
+               }
+            },
+            {
+               "url": "https://rsca.sccwrp.org/sgrrmp_rsca/fetchdata/modsum/?masterid=SGUT502",
+               "expected_data": {
+                  "data": "[{\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2010.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"Weakening\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"No Evidence\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"No Test Data\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"No Test Data\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"Weakening\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"No Evidence\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"No Test Data\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"No Test Data\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"Weakening\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"No Evidence\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"No Test Data\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"No Test Data\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"CSCI > 0.79\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"Weakening\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"Weakening\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"No Test Data\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Spatial Co-Occurrence\", \"assessment\": \"Weakening\", \"loa\": \"spatial_co_occurrence\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"Weakening\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"Weakening\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"No Test Data\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Reference Condition\", \"assessment\": \"Weakening\", \"loa\": \"reference_condition\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"Weakening\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"Supporting\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"No Test Data\", \"loa\": \"stressor_response\"}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"human_loa\": \"Stressor Response\", \"assessment\": \"Indeterminate\", \"loa\": \"stressor_response\"}]"
+               }
+            },
+            {
+               "url": "https://rsca.sccwrp.org/sgrrmp_rsca/fetchdata/csci/?masterid=SGUT502",
+               "expected_data": {
+                  "data": "[{\"masterid\": \"SGUT502\", \"year\": 2010.0, \"sampleid\": \"SGUT502_2010-05-27_BMI_RWB_1\", \"csci\": 0.8715637, \"qt10\": 0.88758998, \"qt50\": 1.07348864, \"qt90\": 1.19467483}, {\"masterid\": \"SGUT502\", \"year\": 2011.0, \"sampleid\": \"SGUT502_2011-06-28_BMI_RWB_1\", \"csci\": 0.89398808, \"qt10\": 0.88758998, \"qt50\": 1.07348864, \"qt90\": 1.19467483}, {\"masterid\": \"SGUT502\", \"year\": 2012.0, \"sampleid\": \"SGUT502_2012-06-18_BMI_RWB_1\", \"csci\": 0.97438595, \"qt10\": 0.88758998, \"qt50\": 1.07348864, \"qt90\": 1.19467483}, {\"masterid\": \"SGUT502\", \"year\": 2013.0, \"sampleid\": \"SGUT502_2013-07-01_BMI_RWB_1\", \"csci\": 1.00861478, \"qt10\": 0.88758998, \"qt50\": 1.07348864, \"qt90\": 1.19467483}, {\"masterid\": \"SGUT502\", \"year\": 2014.0, \"sampleid\": \"SGUT502_2014-07-01_BMI_RWB_1\", \"csci\": 0.78950125, \"qt10\": 0.88758998, \"qt50\": 1.07348864, \"qt90\": 1.19467483}, {\"masterid\": \"SGUT502\", \"year\": 2015.0, \"sampleid\": \"SGUT502_2015-07-06_BMI_RWB_1\", \"csci\": 0.84325966, \"qt10\": 0.88758998, \"qt50\": 1.07348864, \"qt90\": 1.19467483}, {\"masterid\": \"SGUT502\", \"year\": 2016.0, \"sampleid\": \"SGUT502_2016-06-09_BMI_RWB_1\", \"csci\": 0.51065966, \"qt10\": 0.88758998, \"qt50\": 1.07348864, \"qt90\": 1.19467483}]"
+               }
+            },
+            {
+               "url": "https://services1.arcgis.com/gfvMa5URH3rFRQ7T/arcgis/rest/services/RSCA_Comparator_Sites/FeatureServer/0/query?f=json&returnIdsOnly=true&returnCountOnly=true&spatialRel=esriSpatialRelIntersects&where=testsite%20%3D%20%27SGUT502%27",
+               "expected_data": {
+                  "count": 637
+               }
+            },
+            {
+               "url": "https://services1.arcgis.com/gfvMa5URH3rFRQ7T/arcgis/rest/services/RSCA_LOE_Mod_Summary_All_Sampling_Events/FeatureServer/0//query?where=masterid+%3D+%27SGUT502%27+AND+latitude+%3D+34.2283+AND+longitude+%3D+-117.76593&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=csci_sampleid&returnGeometry=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=",
+               "expected_data": {
+                  "objectIdFieldName": "ObjectId2",
+                  "uniqueIdField": {
+                     "name": "ObjectId2",
+                     "isSystemMaintained": true
+                  },
+                  "globalIdFieldName": "",
+                  "geometryType": "esriGeometryPoint",
+                  "spatialReference": {
+                     "wkid": 102100,
+                     "latestWkid": 3857
+                  },
+                  "fields": [
+                     {
+                        "name": "csci_sampleid",
+                        "type": "esriFieldTypeString",
+                        "alias": "csci_sampleid",
+                        "sqlType": "sqlTypeNVarchar",
+                        "length": 4000,
+                        "domain": null,
+                        "defaultValue": null
+                     }
+                  ],
+                  "features": [
+                     {
+                        "attributes": {
+                           "csci_sampleid": "SGUT502_2016-06-09_BMI_RWB_1"
+                        }
+                     },
+                     {
+                        "attributes": {
+                           "csci_sampleid": "SGUT502_2015-07-06_BMI_RWB_1"
+                        }
+                     },
+                     {
+                        "attributes": {
+                           "csci_sampleid": "SGUT502_2014-07-01_BMI_RWB_1"
+                        }
+                     },
+                     {
+                        "attributes": {
+                           "csci_sampleid": "SGUT502_2013-07-01_BMI_RWB_1"
+                        }
+                     },
+                     {
+                        "attributes": {
+                           "csci_sampleid": "SGUT502_2012-06-18_BMI_RWB_1"
+                        }
+                     },
+                     {
+                        "attributes": {
+                           "csci_sampleid": "SGUT502_2011-06-28_BMI_RWB_1"
+                        }
+                     },
+                     {
+                        "attributes": {
+                           "csci_sampleid": "SGUT502_2010-05-27_BMI_RWB_1"
+                        }
+                     }
+                  ]
+               }
+            }
+         ]
+      },
+      {
+         "name": "SQI",
+         "services": [
+            {
+               "url": "https://sccwrp.shinyapps.io/sqi_shiny_dynamic/",
+               "expected_data": null
+            },
+            {
+               "url": "https://smcchecker.sccwrp.org/smc/sqi_rawdata",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "SCAPE",
+         "services": [
+            {
+               "url": "https://sccwrp.shinyapps.io/scape/",
+               "expected_data": null
+            },
+            {
+               "url": "https://knb.ecoinformatics.org/view/urn:uuid:75411f50-32ed-42a5-bbfd-26833c7a441f",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "ASCI",
+         "services": [
+            {
+               "url": "https://sccwrp.shinyapps.io/ascifigs/",
+               "expected_data": null
+            },
+            {
+               "url": "https://sites.google.com/view/asci/home",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "EMPA",
+         "services": [
+            {
+               "url": "https://empa.sccwrp.org/",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "Family Index",
+         "services": [
+            {
+               "url": "https://sccwrp.shinyapps.io/familyindex/",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "Beta SDAM AW",
+         "services": [
+            {
+               "url": "https://betasdamaw-sccwrp.hub.arcgis.com/",
+               "expected_data": null
+            },
+            {
+               "url": "https://sccwrp.shinyapps.io/beta_awsdam_report/",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "Beta SDAM WM",
+         "services": [
+            {
+               "url": "https://sdam-for-western-mountains-sccwrp.hub.arcgis.com/",
+               "expected_data": null
+            },
+            {
+               "url": "https://sccwrp.shinyapps.io/beta_sdam_wm/",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "Biostimulatory response modeling thresholds (draft)",
+         "services": [
+            {
+               "url": "https://sccwrp.shinyapps.io/biostim_thresh/",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "SDAM Checker",
+         "services": [
+            {
+               "url": "https://sdamchecker.sccwrp.org/checker",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "SMC Data Portal",
+         "services": [
+            {
+               "url": "https://smc.sccwrp.org/",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "Santa Ana salinization thresholds",
+         "services": [
+            {
+               "url": "https://sccwrp.shinyapps.io/RB8_Threshold/",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "Threshold identification for modified channels",
+         "services": [
+            {
+               "url": "https://sccwrp.shinyapps.io/ModifiedChannelThresholds/",
+               "expected_data": null
+            }
+         ]
+      },
+      {
+         "name": "LA River e-flows",
+         "services": [
+            {
+               "url": "https://sccwrp.shinyapps.io/lar_eflows_shinyapp/",
+               "expected_data": null
+            },
+            {
+               "url": "https://la-river-eflows-study-2021-sccwrp.hub.arcgis.com/",
+               "expected_data": null
+            }
+         ]
+      }
+   ]
+}

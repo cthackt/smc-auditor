@@ -96,6 +96,10 @@ export default function TableDisplayTree() {
                <li>Ev_FlowHab</li>
             </TableDisplayTreeLine>
          </TableDisplayTreeLine>
+         
+         <br></br>
+         <br></br>
+
          <TableDisplayTreeLine tableTitle={"IPI"}>
             <TableDisplayTreeLine tableTitle={"XSlope"}>
                <li>Proportion</li>

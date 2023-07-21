@@ -43,3 +43,12 @@
 .display-message {
    color: rgb(147, 147, 147)
 }
+
+.row {
+   margin-bottom: 20px;
+}
+
+.apps-sidebar {
+   color: white;
+   text-align: center;
+}

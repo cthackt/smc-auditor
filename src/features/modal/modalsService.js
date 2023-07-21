@@ -26,13 +26,13 @@ export const getMetaData = createAsyncThunk("modal/getMetaData", async (actionOb
 
    const payloadObj = {
       'station': actionObject[0],
-      'sample_date': actionObject[1],
+      'sampledate': actionObject[1],
       'variable': actionObject[2],
    }
 
    const payload = JSON.stringify(payloadObj)
 
-   const response = await fetch(`https://nexus.sccwrp.org/smc-audit/search_meta_data`, {
+   const response = await fetch(`https://nexus.sccwrp.org/smc-audit/get_metadata`, {
       method: 'POST',
       headers: {
          "Content-Type": "application/json",
@@ -53,4 +53,8 @@ export const getSampleInfo = createAsyncThunk("modal/getSampleInfo", async (acti
    }
 
    return result
+})
+
+export const getColumnsData = createAsyncThunk("modal/getColumnsData", async (actionObject) => {
+   return actionObject
 })

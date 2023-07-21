@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getData, getErrorDates } from "./stationsService";
+import { getData, getErrorDates, getAllIds } from "./stationsService";
 
 const initialState = {
    data: "",
+   allIDs: '',
    errorDates: "",
    pending: false
 }
@@ -24,6 +25,9 @@ export const stationsSlice = createSlice({
          })
          .addCase(getErrorDates.fulfilled, (state, action) => {
             state.errorDates = action.payload
+         })
+         .addCase(getAllIds.fulfilled, (state, action) => {
+            state.allIDs = action.payload
          })
    }
 })
