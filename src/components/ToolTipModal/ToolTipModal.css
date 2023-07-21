@@ -1,0 +1,70 @@
+.ttModal {
+   z-index: 5 !important;
+   position: absolute;
+   top: 0;
+   height: 100%;
+   width: 100%;
+   color: black;
+}
+
+.ttoverlay {
+   background-color: rgba(0, 0, 0, 0.75);
+   top: 0;
+   height: 100%;
+   width: 100%;
+}
+
+.ttcloseButton {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   cursor: pointer;
+}
+
+.ttcloseButton img {
+   height: 25px;
+   width: auto;
+}
+
+.ttmodalBody {
+   position: absolute;
+   background: linear-gradient(0deg, #c2c2c2 0%, #fefefe 100%);
+   position: absolute;
+   top: 40%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   border-radius: 10px;
+   padding: 85px 10px 10px 10px;
+}
+
+.ttmodalHeader {
+   position: absolute;
+   display: flex;
+   top: 10px
+}
+
+.ttmodalHeader h6 {
+   margin-left: 10px
+}
+
+.ttmodalContent {
+   display: flex;
+   height: 100%;
+   width: 100%;
+}
+.ttmodalContent table {
+   background-color: white !important;
+   border: none !important;
+}
+.ttmodalContent table th {
+   color: black;
+   background-color: white !important;
+   padding: 5px;
+   border: solid 1px lightgray;
+}
+.ttmodalContent table td {
+   color: black;
+   background-color: white !important;
+   padding: 5px;
+   border: solid 1px lightgray;
+}

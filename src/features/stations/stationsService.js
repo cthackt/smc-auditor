@@ -31,3 +31,20 @@ export const getErrorDates = createAsyncThunk("stations/getErrorDates", async (s
    const result = await response.json()
    return result.res
 })
+
+export const getAllIds = createAsyncThunk("stations/getAllIds", async (stationID) => {
+   
+   const payloadObj = {'stationcode': stationID}
+   const payload = JSON.stringify(payloadObj)
+
+   const response = await fetch('https://nexus.sccwrp.org/smc-audit/masterid_mapper', {
+         method: 'POST',
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: payload
+      }
+   )
+   const result = await response.json()
+   return result.res
+})

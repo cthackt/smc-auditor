@@ -1,10 +1,17 @@
 import React from 'react'
+import { useState } from 'react'
 import './Table.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { showModal } from '../../features/modal/modalsSlice'
-import { getErrors, getSampleInfo } from '../../features/modal/modalsService';
+import { getErrors, getSampleInfo, getMetaData, getColumnsData } from '../../features/modal/modalsService';
 import { display } from '../../features/tables/tablesSlice'
 import closeIcon from '../../assets/close.png'
+import tooltip from '../../assets/icons8-info-48.png'
+import { showToolTipModal } from '../../features/modal/modalsSlice'
+
+import metricsModules from '../../metricsModules';
+import { keyToTables } from '../../keyToTables'
+
 
 export default function Table(props) {
 
@@ -22,6 +29,7 @@ export default function Table(props) {
 
    const handleStatusButtonClick = async (header, sampleDate) => {
       await dispatch(getSampleInfo([stationID, sampleDate, header]))
+      // await dispatch(getMetaData([stationID, sampleDate, header]))
       await dispatch(getErrors([stationID, sampleDate, header]))
       await dispatch(showModal())
    }
@@ -30,10 +38,33 @@ export default function Table(props) {
       dispatch(display(title))
    }
 
+   const handleInfoClick = () => {
+      console.log(title.toUpperCase(), '***********************')
+      for (let key in metricsModules[title]) {
+         let column = metricsModules[title][key]
+         console.log(column, ' : ', keyToTables[column])
+      }
+
+      let columnData = {};
+
+      for (let columnName in metricsModules[title]) {
+         columnData['tableName'] = title;
+         columnData[metricsModules[title][columnName]] = keyToTables[metricsModules[title][columnName]];
+      }
+
+      console.log(columnData)
+
+      dispatch(getColumnsData(columnData))
+      dispatch(showToolTipModal())
+   }
+
    if (displayTheTable) {
       return (
          <div className='tableContainer'>
-            <h4>{title.toUpperCase()}</h4>
+            <div className="tableHeader">
+               <h4>{title.toUpperCase()}</h4>
+               <img src={tooltip} alt="tooltip icon" height='25px' onClick={handleInfoClick}/>
+            </div>
             <div className='containerBody'>
                <div className='tableCloseButton' onClick={handleCloseClick}><img src={closeIcon} alt="close table"></img></div>
                <table className="table">
@@ -61,7 +92,15 @@ export default function Table(props) {
                                     if (stationResults[header] && Object.values(stationResults[header]).includes(sampleDate)) {
                                        return <td><button class="btn btn-success" onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>✓</button></td>
                                     } else {
-                                       if (errDates && errDates.includes(sampleDate) && Object.keys(errorData).includes(header)) {
+                                       let errorExists = false
+                                       if (errorData[header]) {
+                                          for (let key in errorData[header]['sampledate']) {
+                                             if (new Date(errorData[header]['sampledate'][key]).toUTCString() === sampleDate) {
+                                                errorExists = true;
+                                             }
+                                          }
+                                       }
+                                       if (errorExists) {
                                           return <td><button class='btn btn-danger' onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>error</button></td>
                                        } else {
                                           return <td><button class='btn btn-secondary' onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>no data</button></td>

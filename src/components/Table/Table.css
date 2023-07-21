@@ -64,6 +64,25 @@ th:nth-child(1) {
    margin: 10px 0px 20px;
 }
 
+.tableHeader {
+   display: flex;
+}
+.tableHeader img {
+   margin-top: 12px;
+   margin-left: 5px;
+   cursor: pointer;
+}
+
+.my-tooltip {
+   z-index: 5;
+   position: relative;
+   color: white;
+   background-color: black;
+   height: fit-content;
+   padding: 10px;
+   border-radius: 5px; 
+}
+
 .table .btn {
    padding: 0px;
    box-shadow: none !important;
@@ -73,3 +92,5 @@ th:nth-child(1) {
    font-family: 'Courier New', Courier, monospace;
    font-weight: bold;
 }
+
+

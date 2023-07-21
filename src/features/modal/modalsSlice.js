@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getErrors, getMetaData, getSampleInfo } from "./modalsService";
+import { getErrors, getMetaData, getSampleInfo, getColumnsData } from "./modalsService";
 
 const initialState = {
    active: false,
+   tooltipActice: false,
+   ttData: '',
    errors: "",
    sampleInfo: "",
    metadata: ""
@@ -14,6 +16,9 @@ export const modalsSlice = createSlice({
    reducers: {
       showModal(state) {
          state.active = !state.active
+      },
+      showToolTipModal(state) {
+         state.tooltipActive = !state.tooltipActive
       }
    },
    extraReducers: (builder) => {
@@ -24,11 +29,14 @@ export const modalsSlice = createSlice({
          .addCase(getMetaData.fulfilled, (state, action) => {
             state.metadata = action.payload
          })
+         .addCase(getColumnsData.fulfilled, (state, action) => {
+            state.ttData = action.payload;
+         })
          .addCase(getSampleInfo.fulfilled, (state, action) => {
-            state.sampleInfo = action.payload
+            state.sampleInfo = action.payload;
          })
    }
 })
 
-export const { showModal } = modalsSlice.actions;
+export const { showModal, showToolTipModal } = modalsSlice.actions;
 export default modalsSlice.reducer

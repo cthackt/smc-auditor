@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-   "TEST": false,
    "Analysis Tables" : false,
    "Raw Data" : false,
-   "SQI" : false,
+   "SQI" : true,
    "CSCI" : false,
-   "RSCA" : false,
+   "RSCA" : true,
    "ASCI-D" : false,
    "CRAM" : false,
    "Chemistry" : false,
@@ -27,11 +26,11 @@ const initialState = {
    "pct_rc" : false,
    "pct_pool" : false,
    "xcmg" : false,
-   "xc" : true,
-   "fl_q_m" : true,
-   "fl_n_m" : true,
-   "fl_d_m" : true,
-   "fl_t_m" : true,
+   "xc" : false,
+   "fl_q_m" : false,
+   "fl_n_m" : false,
+   "fl_d_m" : false,
+   "fl_t_m" : false,
 }
 
 export const tablesSlice = createSlice({
