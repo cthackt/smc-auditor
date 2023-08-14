@@ -1,5 +1,5 @@
 const metricsModules = {
-   "SQI": ["csci", "asci-d", "chem"],
+   "SQI": ["csci", "asci-d", "ipi", "cram", "total n", "total p", "conductivity"],
    "CSCI": ["bmi taxonomy", "gis metrics"],
    "ASCI-D": ["algae taxonomy", "gis metrics"],
    "RSCA": ["csci", "temperature chemistry", "specicon chemistry"],
@@ -26,6 +26,7 @@ const metricsModules = {
    "fl_n_m": ["StationWaterDepth fl_d_m"],
    "fl_d_m": ["there's a problem here"],
    "fl_t_m": ["there's a problem here"],
+   "analysis_chem_nutrients_0" : ["total n", "Analysis_TN", "Chem_Nitrate_N", "Chem_Nitrite_N", "Chem_NOx_N", "Chem_TN", "Chem_TKN", "Analysis_TP", "Chem_TP", "Chem_PO4",],
 }
 
 export default metricsModules

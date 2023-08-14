@@ -14,10 +14,49 @@
    filter: drop-shadow(0 3px 2px rgb(94, 94, 94));
    margin: 10px;
    width: fit-content;
-   max-height: 40vh;
+   height: fit-content;
+}
+.bigTableContainer {
+   background-color: #949494;
+   padding: 10px;
+   border-radius: 10px;
+   filter: drop-shadow(0 3px 2px rgb(94, 94, 94));
+   margin: 10px;
+   width: 100%;
+   height: fit-content;
+}
+.tableContainer h4 {
+   color: rgb(224, 224, 224);
+   margin: 10px 0px 20px;
+}
+.bigTableContainer h4 {
+   color: rgb(224, 224, 224);
+   margin: 10px 0px 20px;
+}
+
+.tableHeader {
+   display: flex;
+}
+.tableHeader img {
+   margin-top: 12px;
+   margin-left: 5px;
+   cursor: pointer;
 }
 
 .tableCloseButton {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   cursor: pointer;
+}
+
+.tableResizeButton {
+   position: absolute;
+   right: 45px;
+   top: 10px;
+   cursor: pointer;
+}
+.tableMinimizeButton {
    position: absolute;
    right: 10px;
    top: 10px;
@@ -29,10 +68,12 @@
    width: auto;
 }
 
-
 .containerBody {
    overflow: auto;
-   max-height: 32vh;
+   max-height: 40vh;
+}
+.bigContainerBody {
+   height: fit-content;
 }
 
 td {
@@ -57,20 +98,6 @@ th:nth-child(1) {
    background-color: #949494 !important;
    text-align: left;
    color: white;
-}
-
-.tableContainer h4 {
-   color: rgb(224, 224, 224);
-   margin: 10px 0px 20px;
-}
-
-.tableHeader {
-   display: flex;
-}
-.tableHeader img {
-   margin-top: 12px;
-   margin-left: 5px;
-   cursor: pointer;
 }
 
 .my-tooltip {

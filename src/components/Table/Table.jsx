@@ -3,11 +3,13 @@ import { useState } from 'react'
 import './Table.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { showModal } from '../../features/modal/modalsSlice'
-import { getErrors, getSampleInfo, getMetaData, getColumnsData } from '../../features/modal/modalsService';
-import { display } from '../../features/tables/tablesSlice'
+import { getErrors, getSampleInfo, getDbTableData, getColumnsData } from '../../features/modal/modalsService';
+import { display, hide } from '../../features/tables/tablesSlice'
 import closeIcon from '../../assets/close.png'
+import resizeIcon from '../../assets/icons8-resize-32.png'
+import minimizeIcon from '../../assets/icons8-minimize.png'
 import tooltip from '../../assets/icons8-info-48.png'
-import { showToolTipModal } from '../../features/modal/modalsSlice'
+import { showToolTipModal, setBigTableActive } from '../../features/modal/modalsSlice'
 
 import metricsModules from '../../metricsModules';
 import { keyToTables } from '../../keyToTables'
@@ -21,28 +23,54 @@ export default function Table(props) {
    const sampleDates = props.sampleDates
    const errDates = props.errDates
 
+   const [bigTable, setBigTable] = useState(false)
+
    const stationResults = useSelector(state => state.station.data)
    const errorData = useSelector(state => state.station.errorDates)
    const displayTheTable = useSelector(state => state.tables[title])
+   const tables = useSelector(state => state.tables)
+
+   const [tableStateSave, setTableStateSave] = useState([])
 
    const dispatch = useDispatch();
 
    const handleStatusButtonClick = async (header, sampleDate) => {
       await dispatch(getSampleInfo([stationID, sampleDate, header]))
-      // await dispatch(getMetaData([stationID, sampleDate, header]))
+      await dispatch(getDbTableData([stationID, sampleDate, header]))
       await dispatch(getErrors([stationID, sampleDate, header]))
-      await dispatch(showModal())
+      dispatch(showModal())
    }
 
    const handleCloseClick = () => {
       dispatch(display(title))
    }
+   
+   const handleResizeClickBig = () => {
+      let currentTables = []
+      setTableStateSave([])
+      for (let key in tables) {
+         if (key !== title && tables[key] === true) {
+            if (tables[key] == true) {
+               currentTables.push(key)
+            }
+            dispatch(hide(key))
+         }
+      }
+      setTableStateSave(currentTables)
+      setBigTable(true)
+      dispatch(setBigTableActive())
+   }
+   const handleResizeClickSmall = () => {
+      tableStateSave.forEach(key => {
+         dispatch(display(key))
+      })
+      setBigTable(false)
+      dispatch(setBigTableActive())
+   }
 
    const handleInfoClick = () => {
-      console.log(title.toUpperCase(), '***********************')
       for (let key in metricsModules[title]) {
          let column = metricsModules[title][key]
-         console.log(column, ' : ', keyToTables[column])
       }
 
       let columnData = {};
@@ -52,21 +80,27 @@ export default function Table(props) {
          columnData[metricsModules[title][columnName]] = keyToTables[metricsModules[title][columnName]];
       }
 
-      console.log(columnData)
-
       dispatch(getColumnsData(columnData))
       dispatch(showToolTipModal())
    }
 
    if (displayTheTable) {
       return (
-         <div className='tableContainer'>
+         <div className={bigTable ? 'bigTableContainer' : 'tableContainer'}>
             <div className="tableHeader">
                <h4>{title.toUpperCase()}</h4>
-               <img src={tooltip} alt="tooltip icon" height='25px' onClick={handleInfoClick}/>
+               <img src={tooltip} alt="tooltip icon" height='25px' onClick={handleInfoClick} />
             </div>
-            <div className='containerBody'>
-               <div className='tableCloseButton' onClick={handleCloseClick}><img src={closeIcon} alt="close table"></img></div>
+            <div className={bigTable ? 'bigContainerBody' : 'containerBody'}>
+               {bigTable ?
+                  <div className='tableMinimizeButton' onClick={handleResizeClickSmall}><img src={minimizeIcon} alt="close table" height={'30px'}></img></div>
+                  :
+                  <>
+                     <div className='tableCloseButton' onClick={handleCloseClick}><img src={closeIcon} alt="close table"></img></div>
+                     <div className='tableResizeButton' onClick={handleResizeClickBig}><img src={resizeIcon} alt="close table" height={'25px'}></img></div>
+                  </>
+               }
+
                <table className="table">
                   <thead>
                      <tr>
@@ -84,7 +118,7 @@ export default function Table(props) {
                               dataExists = true;
                            }
                         })
-                        if (dataExists || (errDates && errDates.includes(sampleDate)) /*true*/) {
+                        if (dataExists || (errDates && errDates.includes(sampleDate))) {
                            return (
                               <tr>
                                  <td>{new Date(sampleDate).toUTCString().substring(5, 16)}</td>

@@ -2,7 +2,7 @@ import React from 'react'
 import './Modal.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { showModal } from '../../features/modal/modalsSlice';
-import closeIcon from '../../assets/close.png'
+import closeIcon from '../../assets/close-black.png'
 
 export default function Modal() {
 
@@ -12,8 +12,9 @@ export default function Modal() {
    const stationID = useSelector(state => state.modal.sampleInfo.station)
    const sampleDate = useSelector(state => state.modal.sampleInfo.sample_date)
    const datatype = useSelector(state => state.modal.sampleInfo.variable)
+   const dbTableData = useSelector(state => state.modal.dbTableData)
 
-   const error = errors !== "" && errors !== 'no data' && errors[0] ? errors[0].errmsg : ''
+   const error = errors !== "" && errors !== 'no data' && errors[0] && sampleDate == errors[0].sampledate ? errors[0].errmsg : ''
 
    const handleCloseClick = () => {
       dispatch(showModal())
@@ -23,22 +24,44 @@ export default function Modal() {
       <div className='myModal'>
          <div className="overlay">
             <div className="modalBody">
-               <div className='closeButton' onClick={handleCloseClick}><img src={closeIcon} alt="close modal"></img></div>
                <div className="modalHeader">
                   <h1>{datatype.toUpperCase()}</h1>
                   <div>
                      <h6>{stationID}</h6>
                      <h6>{sampleDate}</h6>
                   </div>
+                  <div className='closeButton' onClick={handleCloseClick}><img src={closeIcon} alt="close modal"></img></div>
                </div>
                <div className="modalContent">
-                  <div className="metaDataBox">
-                     <h3>Meta data..?</h3>
-                     <h3>Something else useful..?</h3>
-                  </div>
                   <div className="errorBox">
-                     
-                     <p>{error ? error : 'errors will display here...'}</p>
+                     <p>{error ? error : 'any errors will display here...'}</p>
+                  </div>
+                  <div className="modalTableContainer">
+                     {Object.keys(dbTableData).map(index => {
+                        return (
+                           <>
+                              <br/><p><b>Row {parseInt(index) + 1} of {dbTableData.length}</b></p>
+                              <table>
+                                 <thead>
+                                    <tr>
+                                       <th>Field</th>
+                                       <th>Value</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {Object.keys(dbTableData[index]).map(field => {
+                                       return(
+                                          <tr>
+                                             <td>{ field }</td>
+                                             <td>{ dbTableData[index][field] }</td>
+                                          </tr>
+                                       )
+                                    })}
+                                 </tbody>
+                              </table>
+                           </>
+                        )
+                     })}
                   </div>
                </div>
             </div>

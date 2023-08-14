@@ -10,6 +10,7 @@ export default function ToolTipModal() {
 
    const ttData = useSelector(state => state.modal.ttData)
    const allIDs = useSelector(state => state.station.allIDs)
+   const sqlQueries = useSelector(state => state.modal.sqlQueries)
 
    const tableName = ttData.tableName;
 
@@ -46,7 +47,7 @@ export default function ToolTipModal() {
                               undefined : 
                               <tr>
                                  <td>{el}</td>
-                                 <td>{ttData[el]}</td>
+                                 <td>{sqlQueries[el] + '[ARRAY OF ALIASES]'}</td>
                               </tr>
                         )})}
                      </tbody>

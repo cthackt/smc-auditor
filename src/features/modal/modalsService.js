@@ -58,3 +58,30 @@ export const getSampleInfo = createAsyncThunk("modal/getSampleInfo", async (acti
 export const getColumnsData = createAsyncThunk("modal/getColumnsData", async (actionObject) => {
    return actionObject
 })
+
+export const getSQL = createAsyncThunk("modal/getSQL", async () => {
+   const response = await fetch(`https://nexus.sccwrp.org/smc-audit/get_sql`, {
+      method: 'GET',
+   })
+   const result = await response.json()
+   return result.res
+})
+
+export const getDbTableData = createAsyncThunk("modal/getDbTableData", async (actionObject) => {
+   const payloadObj = {
+      'station': actionObject[0],
+      'sampledate': actionObject[1],
+      'variable': actionObject[2],
+   }
+   const payload = JSON.stringify(payloadObj)
+   const response = await fetch(`https://nexus.sccwrp.org/smc-audit/get_db_table_data`, {
+      method: 'POST',
+      headers: {
+         "Content-Type": "application/json",
+      },
+      body: payload
+   })
+   const result = await response.json()
+   return result.res
+})
+

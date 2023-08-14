@@ -16,6 +16,8 @@ import { urlsToIgnore } from './urlsToIgnoreArray';
 import ToolTipModal from './components/ToolTipModal/ToolTipModal';
 import searchIcon from "./assets/icons8-search-50.png"
 import { getAllIds } from './features/stations/stationsService';
+import { getSQL } from './features/modal/modalsService';
+import { getAuth } from './features/auth/authService';
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
 
    const displayMessage = 'Search for a station...'
    const [inputValue, setInputValue] = useState('SGUT502')
+   const [unInput, setUnInput] = useState('smc')
+   const [pwInput, setPwInput] = useState('')
    const [sampleYears, setSampleYears] = useState("")
    const [tableIsLoaded, setTableIsLoaded] = useState(false)
    const [sampleDates, setSampleDates] = useState([])
@@ -39,6 +43,7 @@ function App() {
    const statusPending = useSelector(state => state.webapps.loading)
    const errorDates = useSelector(state => state.station.errorDates)
    const webAppsStatuses = useSelector(state => state.webapps.statuses)
+   const authCheck = useSelector(state => state.auth.check)
 
 
    const createSampleYearButtons = () => {
@@ -57,7 +62,6 @@ function App() {
          }
       })
       allSampleDates.sort(function (a, b) { return b - a })
-      console.log(allSampleDates)
       setSampleYears(allSampleDates)
    }
 
@@ -66,7 +70,6 @@ function App() {
       if (year) {
          const beginDate = new Date(year, 0, 1)
          const endDate = new Date(year, 11, 31, 23, 59)
-         console.log("begin date: ", beginDate, " end date: ", endDate)
          Object.keys(stationResults).forEach(datatype => {
             Object.keys(stationResults[datatype]).forEach(sampledate => {
                if (stationResults[datatype][sampledate]) {
@@ -86,15 +89,29 @@ function App() {
          })
       } else {
          Object.keys(stationResults).forEach(datatype => {
-            Object.keys(stationResults[datatype]).forEach(sampledate => {
-               if (stationResults[datatype][sampledate]) {
-                  const sampleDate = new Date(stationResults[datatype][sampledate]).toUTCString()
-                  if (!sampleDatesArray.includes(sampleDate)) {
-                     sampleDatesArray.push(sampleDate)
+            if (datatype !== 'conductivity') {
+               Object.keys(stationResults[datatype]).forEach(sampledate => {
+                  if (stationResults[datatype][sampledate]) {
+                     let sampleDate = new Date(stationResults[datatype][sampledate]).toUTCString()
+                     if (!sampleDatesArray.includes(sampleDate)) {
+                        sampleDatesArray.push(sampleDate)
+                     }
                   }
-               }
-            })
+               })
+            } else {
+               Object.keys(stationResults[datatype]).forEach(sampledate => {
+                  if (stationResults[datatype][sampledate]) {
+                     let sampleDate = new Date(stationResults[datatype][sampledate])
+                     sampleDate.setHours(0, 0, 0)
+                     sampleDate = sampleDate.toUTCString()
+                     if (!sampleDatesArray.includes(sampleDate)) {
+                        sampleDatesArray.push(sampleDate)
+                     }
+                  }
+               })
+            }
          })
+         console.log("sample dates array: ", sampleDatesArray)
          dispatch(getErrorDates(inputValue))
          processedErrorDates.forEach(date => {
             if (!sampleDatesArray.includes(date)) {
@@ -113,16 +130,24 @@ function App() {
             dates.push(new Date(errorDates[variable].sampledate[index]).toUTCString())
          }
       }
-      console.log('dates: ', dates)
       setProcessedErrorDates(dates)
    }
 
    const handleChange = (e) => {
       setInputValue(e.target.value)
    }
+
+   const handleUnChange = (e) => {
+      setUnInput(e.target.value)
+   }
+   const handlePwChange = (e) => {
+      setPwInput(e.target.value)
+   }
+
    const handleSearchClick = (inputValue) => {
       dispatch(getData(inputValue))
       dispatch(getAllIds(inputValue))
+      dispatch(getSQL())
    }
    const handleCheckStatusClick = () => {
       dispatch(queryWebAppsTable())
@@ -165,84 +190,102 @@ function App() {
       dispatch(getAllIds(inputValue))
    }
 
+   const handleAuthCheck = (un, pw) => {
+      dispatch(getAuth({ un, pw }))
+   }
+
+
    return (
       <div>
          {requestPending || statusPending ? <Loader /> : ""}
          {showModal ? <Modal /> : ""}
          {showToolTipModal ? <ToolTipModal /> : ""}
-         
-         <div className="App">
-            <div className="sidebar">
-               <div className="container">
-                  <div className="row">
-                     <div className="col-md-6">
-                        <button className={displayType ? 'btn btn-primary' : 'btn btn-secondary'} onClick={() => handleDisplayChangeClick(true)}>Data</button>
-                     </div>
-                     <div className="col-md-6">
-                        <button className={displayType ? 'btn btn-secondary' : 'btn btn-primary'} onClick={() => handleDisplayChangeClick(false)}>Apps</button>
-                     </div>
-                  </div>
-                  {displayType ?
-                     <>
-                        <br />
-                        <div className="row">
-                           <div className="col-md-9">
-                              <input type="search" className='form-control search-input' value={inputValue} onChange={handleChange} />
-                           </div>
-                           <div className="col-md-3">
-                              <button className="btn btn-primary" onClick={() => handleSearchClick(inputValue)}><img src={searchIcon} alt="search" height="18px"></img></button>
-                           </div>
-                        </div>
-                        <div className="row g-1">
-                           {sampleYears !== "" ? <SampleYearButton year="View All" /> : ""}
-                           {sampleYears !== "" ? sampleYears.map(sampleYear => { return <SampleYearButton year={sampleYear} /> }) : ""}
-                        </div>
-                        {/* <button className="btn btn-primary" onClick={() => handleGetWebAppsStatus()}>apps request</button> */}
-                        <TableDisplayTree />
-                     </> :
-                     <>
-                        <div className="apps-sidebar">
-                           <div className="row" style={{ 'margin-top': '30vh' }}>
-                              <h4>Last status check: {createLastUpdateTime(new Date(webAppsStatuses[0].date_checked))}</h4>
-                           </div>
-                           <button className="btn btn-light" onClick={() => handleCheckStatusClick()}>Check status now</button>
-                        </div>
-                     </>
-                  }
+
+         {/* {!authCheck ? (
+            <>
+               <div className="authContainer">
+                  <input className='form-control search-input' value={unInput} onChange={handleUnChange} />
+                  <input type='password' className='form-control search-input' value={pwInput} onChange={handlePwChange} />
+                  <button className='btn btn-primary' onClick={() => { handleAuthCheck(unInput, pwInput) }}>Submit</button>
                </div>
-            </div>
-            <div className="display">
-               <div className="container">
-                  {displayType ?
-                     <>
-                        {tableIsLoaded ?
+            </>
+         ) : ( */}
+            <div className="App">
+               <div className="sidebar">
+                  <div className="container">
+                     <div className="row">
+                        <div className="col-md-6">
+                           <button className={displayType ? 'btn btn-primary' : 'btn btn-secondary'} onClick={() => handleDisplayChangeClick(true)}>Data</button>
+                        </div>
+                        <div className="col-md-6">
+                           <button className={displayType ? 'btn btn-secondary' : 'btn btn-primary'} onClick={() => handleDisplayChangeClick(false)}>Apps</button>
+                        </div>
+                     </div>
+                     {displayType ?
+                        <>
+                           <br />
                            <div className="row">
-                              {Object.keys(metricsModules).map(key => {
-                                 const hasErrorHandling = ['SQI', 'PHAB', 'ASCI-D', '']
-                                 if (hasErrorHandling.includes(key)) {
-                                    return <Table title={key} station={inputValue} sampleDates={sampleDates} errDates={processedErrorDates} headers={metricsModules[key]} />
-                                 } else {
-                                    return <Table title={key} station={inputValue} sampleDates={sampleDates} headers={metricsModules[key]} />
+                              <div className="col-md-9">
+                                 <input type="search" className='form-control search-input' value={inputValue} onChange={handleChange} />
+                              </div>
+                              <div className="col-md-3">
+                                 <button className="btn btn-primary" onClick={() => handleSearchClick(inputValue)}><img src={searchIcon} alt="search" height="18px"></img></button>
+                              </div>
+                           </div>
+                           <div className="row g-1">
+                              {sampleYears !== "" ? <SampleYearButton year="View All" /> : ""}
+                              {sampleYears !== "" ? sampleYears.map(sampleYear => { return <SampleYearButton year={sampleYear} /> }) : ""}
+                           </div>
+                           {/* <button className="btn btn-primary" onClick={() => handleGetWebAppsStatus()}>apps request</button> */}
+                           <div className='displayTreeContainer'>
+                              <TableDisplayTree />
+                           </div>
+                        </> :
+                        <>
+                           <div className="apps-sidebar">
+                              <div className="row" style={{ 'margin-top': '30vh' }}>
+                                 <h4>Last status check: {createLastUpdateTime(new Date(webAppsStatuses[0].date_checked))}</h4>
+                              </div>
+                              <button className="btn btn-light" onClick={() => handleCheckStatusClick()}>Check status now</button>
+                           </div>
+                        </>
+                     }
+                  </div>
+               </div>
+               <div className="display">
+                  <div className="container">
+                     {displayType ?
+                        <>
+                           {tableIsLoaded ?
+                              <div className="row">
+                                 {Object.keys(metricsModules).map(key => {
+                                    const hasErrorHandling = ['SQI', 'PHAB', 'ASCI-D', '']
+                                    if (hasErrorHandling.includes(key)) {
+                                       return <Table title={key} station={inputValue} sampleDates={sampleDates} errDates={processedErrorDates} headers={metricsModules[key]} />
+                                    } else {
+                                       return <Table title={key} station={inputValue} sampleDates={sampleDates} headers={metricsModules[key]} />
+                                    }
+                                 })}
+                              </div>
+                              : <div className="row"><p className='display-message'>{displayMessage}</p></div>
+                           }
+                        </> :
+                        <>
+                           <div className="row g-3">
+                              {webAppsStatuses.map(app => {
+                                 if (!urlsToIgnore.includes(app['url'])) {
+                                    return <WebAppCard title={app.application} status={app.status} statusCode={app.status_code} url={app.url} />
                                  }
                               })}
                            </div>
-                           : <div className="row"><p className='display-message'>{displayMessage}</p></div>
-                        }
-                     </> :
-                     <>
-                        <div className="row g-3">
-                           {webAppsStatuses.map(app => {
-                              if (!urlsToIgnore.includes(app['url'])) {
-                                 return <WebAppCard title={app.application} status={app.status} statusCode={app.status_code} url={app.url} />
-                              }
-                           })}
-                        </div>
-                     </>
-                  }
+                        </>
+                     }
+                  </div>
                </div>
             </div>
-         </div>
+         {/* )} */}
       </div>
+
    );
 }
 

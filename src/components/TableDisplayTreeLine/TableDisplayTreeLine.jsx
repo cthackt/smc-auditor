@@ -12,8 +12,10 @@ export default function TableDisplayTreeLine(props) {
 
    const [arrowIcon, setArrowIcon] = useState(collapseArrow);
    const [hidden, setHidden] = useState(true);
-
+   
    const displayTable = useSelector(state => state.tables[title])
+   const bigTableActive = useSelector(state => state.modal.bigTableActive)
+   
 
    const dispatch = useDispatch()
 
@@ -27,8 +29,6 @@ export default function TableDisplayTreeLine(props) {
       }
    }
 
-
-
    const handleCheckboxChange = () => {
       dispatch(display(title))
    }
@@ -37,7 +37,10 @@ export default function TableDisplayTreeLine(props) {
       <div>
          <div className="line">
             <div className="arrow" onClick={handleArrowClick}><img src={arrowIcon} alt="expand/colapse"></img></div>
-            <input type='checkbox' className='checkbox' onChange={handleCheckboxChange} checked={displayTable}></input>
+            {bigTableActive ? 
+               <div className='checkbox-overlay' onClick={() => alert('Shrink the active table before changing the display')}></div> 
+            : ''}
+            <input type='checkbox' className='checkbox' onChange={handleCheckboxChange} checked={displayTable} disabled={bigTableActive}></input>
             <span>{title}</span>
          </div>
          <div className={`children ${ hidden ? "hidden" : "" }`}>{props.children}</div>

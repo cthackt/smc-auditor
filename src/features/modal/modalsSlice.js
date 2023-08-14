@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getErrors, getMetaData, getSampleInfo, getColumnsData } from "./modalsService";
+import { getErrors, getMetaData, getSampleInfo, getColumnsData, getSQL, getDbTableData } from "./modalsService";
 
 const initialState = {
    active: false,
@@ -7,7 +7,10 @@ const initialState = {
    ttData: '',
    errors: "",
    sampleInfo: "",
-   metadata: ""
+   metadata: "",
+   sqlQueries: '',
+   dbTableData: '',
+   bigTableActive: false,
 }
 
 export const modalsSlice = createSlice({
@@ -19,7 +22,10 @@ export const modalsSlice = createSlice({
       },
       showToolTipModal(state) {
          state.tooltipActive = !state.tooltipActive
-      }
+      },
+      setBigTableActive(state) {
+         state.bigTableActive = !state.bigTableActive
+      },
    },
    extraReducers: (builder) => {
       builder
@@ -35,8 +41,15 @@ export const modalsSlice = createSlice({
          .addCase(getSampleInfo.fulfilled, (state, action) => {
             state.sampleInfo = action.payload;
          })
+         .addCase(getSQL.fulfilled, (state, action) => {
+            state.sqlQueries = action.payload;
+         })
+         .addCase(getDbTableData.fulfilled, (state, action) => {
+            state.dbTableData = action.payload;
+         })
+   
    }
 })
 
-export const { showModal, showToolTipModal } = modalsSlice.actions;
+export const { showModal, showToolTipModal, setBigTableActive } = modalsSlice.actions;
 export default modalsSlice.reducer

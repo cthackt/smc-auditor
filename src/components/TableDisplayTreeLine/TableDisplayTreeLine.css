@@ -16,6 +16,14 @@
    margin: 0px 10px
 }
 
+.checkbox-overlay {
+   background-color: none;
+   height: 15px;
+   width: 15px;
+   position: absolute;
+   margin: 7px 0px 0px 30px;
+}
+
 .children {
    margin-left: 15px;
 }

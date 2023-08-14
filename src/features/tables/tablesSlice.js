@@ -31,6 +31,7 @@ const initialState = {
    "fl_n_m" : false,
    "fl_d_m" : false,
    "fl_t_m" : false,
+   "analysis_chem_nutrients_0" : false,
 }
 
 export const tablesSlice = createSlice({
@@ -40,9 +41,17 @@ export const tablesSlice = createSlice({
       display(state, action) {
          const tableTitle = action.payload
          state[tableTitle] = !state[tableTitle]
+      },
+      overideTablesState(state, action) {
+         const tableSaveState = action.payload
+         state = tableSaveState
+      },
+      hide(state, action) {
+         const tableTitle = action.payload
+         state[tableTitle] = false
       }
    }
 })
 
-export const { display } = tablesSlice.actions;
+export const { display, overideTablesState, hide } = tablesSlice.actions;
 export default tablesSlice.reducer
