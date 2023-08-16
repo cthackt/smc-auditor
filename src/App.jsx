@@ -201,7 +201,7 @@ function App() {
          {showModal ? <Modal /> : ""}
          {showToolTipModal ? <ToolTipModal /> : ""}
 
-         {/* {!authCheck ? (
+         {!authCheck ? (
             <>
                <div className="authContainer">
                   <input className='form-control search-input' value={unInput} onChange={handleUnChange} />
@@ -209,7 +209,7 @@ function App() {
                   <button className='btn btn-primary' onClick={() => { handleAuthCheck(unInput, pwInput) }}>Submit</button>
                </div>
             </>
-         ) : ( */}
+         ) : (
             <div className="App">
                <div className="sidebar">
                   <div className="container">
@@ -283,7 +283,7 @@ function App() {
                   </div>
                </div>
             </div>
-         {/* )} */}
+         )}
       </div>
 
    );
