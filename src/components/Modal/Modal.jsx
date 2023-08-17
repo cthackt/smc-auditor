@@ -14,7 +14,15 @@ export default function Modal() {
    const datatype = useSelector(state => state.modal.sampleInfo.variable)
    const dbTableData = useSelector(state => state.modal.dbTableData)
 
-   const error = errors !== "" && errors !== 'no data' && errors[0] && sampleDate == errors[0].sampledate ? errors[0].errmsg : ''
+   let error; 
+   
+   if (errors !== "" && errors !== 'no data') {
+      Object.keys(errors).forEach(i => {
+         if (sampleDate == errors[i].sampledate) {
+            error = errors[i].errmsg
+         }
+      })
+   } 
 
    const handleCloseClick = () => {
       dispatch(showModal())

@@ -113,6 +113,7 @@ export default function Table(props) {
                   <tbody>
                      {sampleDates.map(sampleDate => {
                         let dataExists = false;
+                        let gisMetricsExist = false;
                         headers.map(header => {
                            if (stationResults[header] && Object.values(stationResults[header]).includes(sampleDate)) {
                               dataExists = true;
@@ -123,21 +124,29 @@ export default function Table(props) {
                               <tr>
                                  <td>{new Date(sampleDate).toUTCString().substring(5, 16)}</td>
                                  {headers.map(header => {
-                                    if (stationResults[header] && Object.values(stationResults[header]).includes(sampleDate)) {
-                                       return <td><button class="btn btn-success" onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>✓</button></td>
-                                    } else {
-                                       let errorExists = false
-                                       if (errorData[header]) {
-                                          for (let key in errorData[header]['sampledate']) {
-                                             if (new Date(errorData[header]['sampledate'][key]).toUTCString() === sampleDate) {
-                                                errorExists = true;
-                                             }
-                                          }
-                                       }
-                                       if (errorExists) {
-                                          return <td><button class='btn btn-danger' onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>error</button></td>
+                                    if (header == 'gis metrics') {
+                                       if (stationResults[header].length > 0) {
+                                          return <td><button class="btn btn-success" onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>✓</button></td>
                                        } else {
                                           return <td><button class='btn btn-secondary' onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>no data</button></td>
+                                       }
+                                    } else {
+                                       if (stationResults[header] && Object.values(stationResults[header]).includes(sampleDate)) {
+                                          return <td><button class="btn btn-success" onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>✓</button></td>
+                                       } else {
+                                          let errorExists = false
+                                          if (errorData[header]) {
+                                             for (let key in errorData[header]['sampledate']) {
+                                                if (new Date(errorData[header]['sampledate'][key]).toUTCString() === sampleDate) {
+                                                   errorExists = true;
+                                                }
+                                             }
+                                          }
+                                          if (errorExists) {
+                                             return <td><button class='btn btn-danger' onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>error</button></td>
+                                          } else {
+                                             return <td><button class='btn btn-secondary' onClick={() => handleStatusButtonClick(header, new Date(sampleDate).toUTCString())}>no data</button></td>
+                                          }
                                        }
                                     }
                                  })}
